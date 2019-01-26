@@ -1,3 +1,17 @@
+This project intends to create a scaffold for me to use in order to accelerate the launch of my react projects with all my default tools :
+
+- create-react-app / react-scripts
+- React-Router
+- Redux & React-Redux
+- Redux-Sagas
+- Grommet
+
+Config is ready to use with VS Code
+
+Please feel free to use if this can bring value to you and log a ticket / PR if you find issues
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

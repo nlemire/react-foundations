@@ -2,14 +2,9 @@ import { createStore, applyMiddleware } from 'redux';
 import rootReducer from '../reducers';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from '../sagas';
-
-// const sagaMiddleware = createSagaMiddleware();
-// const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
-// sagaMiddleware.runSaga(rootSaga);
-// export default store;
+import { loadState, saveState } from './localStorageReduxState';
 
 function configureStore(initialState) {
-  // Note: passing middleware as the last argument to createStore requires redux@>=3.1.0
   const sagaMiddleware = createSagaMiddleware();
   return {
     ...createStore(rootReducer, initialState, applyMiddleware(sagaMiddleware)),
@@ -17,7 +12,13 @@ function configureStore(initialState) {
   };
 }
 
-const store = configureStore();
+const persistedState = loadState();
+const store = configureStore(persistedState);
+
+store.subscribe(() => {
+  saveState(store.getState());
+});
+
 store.runSaga(rootSaga);
 
 export default store;
